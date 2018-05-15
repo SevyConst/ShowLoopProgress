@@ -37,6 +37,11 @@ classdef ShowLoopProgress<handle
                     'Probably the loop has already started');
                 throw( MException(msgID, msgtext) ); 
             end
+            
+            if (nSteps > obj.nIter)
+                warning('nSteps > nIter');
+            end
+            
             obj.stepsArray = 1/nSteps : 1/nSteps : 1; 
             obj.iterArray = round(obj.nIter .* obj.stepsArray);
         end
