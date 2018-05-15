@@ -22,25 +22,14 @@ classdef ShowLoopProgress<handle
     
     methods 
         % must be called before the loop
-        function obj = ShowLoopProgress(nIter)
-            obj.nIter = nIter;
-            obj.iStep = 1;
-            obj.setNumberSteps(10); 
-        end
-        
-        % optional method
-        % must be called only before the loop 
-        function setNumberSteps(obj, nSteps)
-            if (obj.iStep ~= 1)
-                msgID = 'ShowLoopProgress:wrongCallMethod';
-                msgtext = strcat('Cannot set.', ...
-                    'Probably the loop has already started');
+        function obj = ShowLoopProgress(nIter, nSteps)
+            if (nIter < nSteps)
+                msgID = 'ShowLoopProgress:wrongInput';
+                msgtext = strcat('nIter < nSteps');
                 throw( MException(msgID, msgtext) ); 
             end
-            
-            if (nSteps > obj.nIter)
-                warning('nSteps > nIter');
-            end
+            obj.nIter = nIter;
+            obj.iStep = 1;
             
             obj.stepsArray = 1/nSteps : 1/nSteps : 1; 
             obj.iterArray = round(obj.nIter .* obj.stepsArray);
