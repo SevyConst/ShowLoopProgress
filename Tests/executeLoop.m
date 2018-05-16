@@ -1,5 +1,5 @@
 function [ output_args ] = executeLoop( nIter, nSteps )
-%EXECUTELOOP Summary of this function goes here
+%EXECUTELOOP this function is used in tests for ShowLoopProgress
 %   Detailed explanation goes here
     progress = ShowLoopProgress(nIter, nSteps);
     for i = 1 : nIter
